@@ -1,0 +1,31 @@
+#menu {
+  &.student {
+    .room-number {
+      padding-top: 10px;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    .actions {
+      box-sizing: border-box !important;
+      margin-top: 20px;
+
+      .room {
+        padding: 20px 0;
+      }
+
+      .assistance {
+        padding: 20px;
+        background-color: #f1f1f1;
+        position: relative;
+
+        .logout {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          z-index: 100;
+        }
+      }
+    }
+  }
+}
