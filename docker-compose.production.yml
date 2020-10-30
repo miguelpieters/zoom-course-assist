@@ -1,0 +1,52 @@
+version: "3.0"
+services:
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    volumes:
+      - redis_data:/data
+
+  proxy:
+    image: tecnativa/docker-socket-proxy
+    ports:
+      - 127.0.0.1:2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - CONTAINERS=1
+
+  backend:
+    image: zoom-assist/backend
+    env_file:
+      - database_config.env
+    depends_on:
+      - database
+    ports:
+      - 8000:8000
+    environment:
+      - ENVIRONMENT=production
+    build:
+      context: ./backend
+      dockerfile: docker/Dockerfile
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://dbdv.pieterswentholt.com/admin/"]
+
+  frontend:
+    image: zoom-assist/frontend
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    build:
+      context: ./frontend
+      dockerfile: docker/prod.Dockerfile
+    volumes:
+      - ./backend/static:/usr/share/nginx/html/bstatic
+      - ./frontend/package.json:/www/package.json
+      - ./frontend/src:/www/src
+      - ./frontend/public:/www/public
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://dbdv.pieterswentholt.com"]
+
+# vim: sw=2:ts=2:ai:et
