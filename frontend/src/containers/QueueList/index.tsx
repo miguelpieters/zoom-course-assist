@@ -1,57 +1,10 @@
 import React, { PureComponent } from "react";
-import {Button, Col, Row} from "antd";
-import "./style.scss";
-import { Table } from 'antd';
+import { Col, Row } from "antd";
 import Questions from "../../api/questions";
 import AssistanceTable from "./AssistanceTable";
 import {IProps, IState} from "./types";
 import RoomsTable from "./RoomsTable";
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'requester',
-    render: (text: string) => <span>{text}</span>,
-  },
-  {
-    title: 'Room',
-    dataIndex: 'room',
-  },
-];
-const data = [
-  {
-    key: '1',
-    requester: 'John Brown',
-    room: 32,
-  },
-  {
-    key: '2',
-    requester: 'Jim Green',
-    room: 42,
-  },
-  {
-    key: '3',
-    requester: 'Joe Black',
-    room: 32,
-    address: 'Sidney No. 1 Lake Park',
-  },
-  {
-    key: '4',
-    requester: 'Disabled User',
-    room: 99,
-  },
-];
-
-// rowSelection object indicates the need for row selection
-const rowSelection = {
-  onChange: (selectedRowKeys: any, selectedRows: any) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  getCheckboxProps: (record: any) => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
+import "./style.scss";
 
 export default class QueueList extends PureComponent<IProps, IState> {
 
