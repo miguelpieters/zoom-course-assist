@@ -23,7 +23,7 @@ if [ "$1" == "runserver" ]; then
     echo "  Running in production mode"
     echo "==============================="
     exec /usr/local/bin/uwsgi \
-        --module pieters_wentholt.wsgi \
+        --module zoom_course_assist.wsgi \
         --master \
         --socket 0.0.0.0:8080 \
         --http 0.0.0.0:8000 \

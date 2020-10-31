@@ -10,7 +10,7 @@ export default class PrimaryApp extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/admin">
+          <Route path="/hosts">
             <AdminApp />
           </Route>
           <Route exact path="/">

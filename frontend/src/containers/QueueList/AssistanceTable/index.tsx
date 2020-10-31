@@ -21,7 +21,7 @@ export default class AssistanceTable extends PureComponent<IProps, IState> {
   render(): React.ReactNode {
     const { claim } = this.state;
 
-    if (claim > 0) return <Redirect to={`./admin/${claim}`} />
+    if (claim > 0) return <Redirect to={`./hosts/${claim}`} />
 
     return (
       <Table

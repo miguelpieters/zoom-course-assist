@@ -18,10 +18,6 @@ services:
 
   backend:
     image: zoom-assist/backend
-    env_file:
-      - database_config.env
-    depends_on:
-      - database
     ports:
       - 8000:8000
     environment:
@@ -48,5 +44,9 @@ services:
       - ./frontend/public:/www/public
     healthcheck:
       test: ["CMD", "curl", "-f", "https://dbdv.pieterswentholt.com"]
+
+volumes:
+  redis_data:
+  postgres_data:
 
 # vim: sw=2:ts=2:ai:et

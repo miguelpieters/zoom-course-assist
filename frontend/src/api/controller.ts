@@ -3,10 +3,9 @@ import axios, {AxiosInstance} from "axios";
 export default class Controller {
 
   protected static client: AxiosInstance;
-  protected static API_PATH = "http://localhost:8000/api/v1/";
 
   static setup() {
-    this.client = axios.create({ baseURL: this.API_PATH });
+    this.client = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/api/v1/` });
 
     this.client.interceptors.request.use(config => {
         const token = localStorage.getItem("token") || "";
