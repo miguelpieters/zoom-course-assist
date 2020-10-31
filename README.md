@@ -6,15 +6,29 @@ A simple yet effective web application for managing breakout rooms on Zoom.
 Before running the application make sure Docker and Docker-compose are installed.
 
 ```
-git clone git@github.com:miguelpieters/zoom-course-assist.git
-cd zoom-course-assist
-docker-compose -f docker-compose.staging.yml up --build
+$ git clone git@github.com:miguelpieters/zoom-course-assist.git
+$ cd zoom-course-assist
+$ docker-compose -f docker-compose.staging.yml up --build
 ```
 
-For production:
+Production run:
 ``` 
-docker-compose -f docker-compose.production.yml up --build --remove-orphans
+$ docker-compose -f docker-compose.production.yml up --build --remove-orphans -d
 ```
+
+Register initial root user
+```
+$ docker-compose -f docker-compose.staging.yml exec backend bash
+$ python3 manage.py createsuperuser
+```
+
+Available endpoints:
+- http://localhost:3000 [student dashboard]
+- http://localhost:3000/hosts [teacher dashboard]
+- http://localhost:8000/admin [backend administration]
+
+Api requests start with `/api/v1/`. When running the application in development mode all endpoints are accessible by
+ visiting `http://localhost:8000/api/v1`.
 
 ## User Manual
 
@@ -39,12 +53,12 @@ Once the question has been asked the user will be provided with an overview of i
 
 #### Assistance granted
 ![Primary dashboard](docs/img/student_3.png "Primary dashboard")
-Once a host becomes available and claims the question the student will be notified whom will come to their breakout
+When a host becomes available and claims the question the student will be notified whom will come to their breakout
  room.
 
 #### Closing questions
 ![Primary dashboard](docs/img/student_4.png "Primary dashboard")
-Once the host closes the question the student is taken back to the initial dashboard. They are free to ask another
+If the question is closed the student is taken back to the initial dashboard. They are free to ask another
  question if needed.
 
   
