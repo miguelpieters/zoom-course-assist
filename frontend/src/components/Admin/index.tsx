@@ -24,10 +24,10 @@ export default class Admin extends Component<{}, IState> {
       <AdminContext.Consumer>
         { consumer => consumer.token.length > 0 || (localStorage.getItem("token") || "").length > 0 ?
           <>
-            <Route exact path="/admin/:question_id">
+            <Route exact path="/hosts/:question_id">
               <AdminAssistance />
             </Route>
-            <Route exact path="/admin">
+            <Route exact path="/hosts">
               <AdminDashboard consumer={consumer} />
             </Route>
           </> :

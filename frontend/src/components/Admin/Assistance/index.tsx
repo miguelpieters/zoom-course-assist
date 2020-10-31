@@ -59,7 +59,7 @@ class AdminAssistance extends PureComponent<any, IState> {
       <Alert
         style={{marginBottom: 20}}
         message="This question has already been claimed!"
-        description={<p>You can return to the dashboard by clicking <a href={"../admin"}>here</a>.</p>}
+        description={<p>You can return to the dashboard by clicking <a href={"../hosts"}>here</a>.</p>}
         type="warning"
         showIcon
       />
@@ -103,7 +103,7 @@ class AdminAssistance extends PureComponent<any, IState> {
     return (
       <div>
         <h2>There was an error loading the question!</h2>
-        <p>You can return to the dashboard by clicking <a href={"../admin"}>here</a>.</p>
+        <p>You can return to the dashboard by clicking <a href={"../hosts"}>here</a>.</p>
       </div>
     )
   }
@@ -112,7 +112,7 @@ class AdminAssistance extends PureComponent<any, IState> {
     const { question, error, already_claimed, is_done } = this.state;
 
     if (is_done) {
-      return <Redirect to="../admin" />;
+      return <Redirect to="../hosts" />;
     }
 
     if (error) return this.renderError();
