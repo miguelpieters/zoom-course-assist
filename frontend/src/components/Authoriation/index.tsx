@@ -95,7 +95,11 @@ export default class Authorization extends Component<IProps, IState> {
         <div className={"footer"}>
           <span>
             Created by <a href={"https://www.linkedin.com/in/miguelepieters/"} target={"_blank"}>Miguel</a>
-            &nbsp; - &nbsp;freely available on GitHub</span>
+            &nbsp; - &nbsp;
+            freely available on <a target={"_blank"} href={"https://github.com/miguelpieters/zoom-course-assist"}>
+              GitHub
+            </a>
+          </span>
         </div>
       </div>
     );
